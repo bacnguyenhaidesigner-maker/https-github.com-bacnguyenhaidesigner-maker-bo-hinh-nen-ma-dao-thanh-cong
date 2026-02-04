@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mã đáo thành công Viettel Money</title>
+
+  <!-- Google Analytics 4 (placeholder) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #111111;
+      --subtle: #EDEDED;
+      --accent: #EE0033;
+    }
+
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      margin: 0;
+      font-family: "SF Pro Display", Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 420px;
+      margin: 0 auto;
+      padding: 16px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 8px 0 12px;
+    }
+
+    /* Preview: 280 x 595 */
+    .preview {
+      width: 280px;
+      height: 595px;
+      margin: 0 auto 24px;
+      border-radius: 32px;
+      overflow: hidden;
+      background: var(--subtle);
+      position: relative;
+      touch-action: pan-y; /* allow horizontal swipe */
+    }
+
+    .preview.bounce-left { animation: bounceLeft 260ms ease-out; }
+    .preview.bounce-right { animation: bounceRight 260ms ease-out; }
+
+    @keyframes bounceLeft {
+      0% { transform: translateX(0); }
+      40% { transform: translateX(-12px); }
+      100% { transform: translateX(0); }
+    }
+
+    @keyframes bounceRight {
+      0% { transform: translateX(0); }
+      40% { transform: translateX(12px); }
+      100% { transform: translateX(0); }
+    }
+
+    .preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transform: scale(0.98);
+      transition: opacity 200ms ease, transform 200ms ease;
+    }
+
+    .preview img.active {
+      opacity: 1;
+      transform: scale(1);
+      position: relative;
+    }
+
+    .preview img.overlay {
+      z-index: 10;
+      pointer-events: none;
+      opacity: 1;
+      transform: none;
+    }
+
+    .thumbnails {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .thumb {
+      width: 56px;
+      height: 100px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid transparent;
+      cursor: pointer;
+    }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .thumb.active {
+      border-color: var(--accent);
+    }
+
+    .download-btn {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Mã đáo thành công Viettel Money</h1>
+
+    <div class="preview" id="preview">
+      <img src="wallpaper-1.webp" class="active" data-index="0" />
+      <img src="wallpaper-2.webp" data-index="1" />
+      <img src="wallpaper-3.webp" data-index="2" />
+      <img src="wallpaper-4.webp" data-index="3" />
+      <img src="overlay-lockscreen.png" class="overlay" />
+    </div>
+
+    <div class="thumbnails">
+      <div class="thumb active" data-index="0"><img src="wallpaper-1.webp" /></div>
+      <div class="thumb" data-index="1"><img src="wallpaper-2.webp" /></div>
+      <div class="thumb" data-index="2"><img src="wallpaper-3.webp" /></div>
+      <div class="thumb" data-index="3"><img src="wallpaper-4.webp" /></div>
+    </div>
+
+    <button class="download-btn">Tải hình nền này</button>
+  </div>
+
+  <script>
+    const previews = document.querySelectorAll('.preview img:not(.overlay)');
+    const thumbs = document.querySelectorAll('.thumb');
+    const previewBox = document.getElementById('preview');
+    const downloadBtn = document.querySelector('.download-btn');
+    let currentIndex = 0;
+
+    function switchTo(index) {
+      if (index < 0 || index >= previews.length) return false;
+      if (index === currentIndex) return true;
+
+      previews[currentIndex].classList.remove('active');
+      thumbs[currentIndex].classList.remove('active');
+      previews[index].classList.add('active');
+      thumbs[index].classList.add('active');
+      currentIndex = index;
+      return true;
+    }
+
+    thumbs.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        switchTo(Number(thumb.dataset.index));
+      });
+    });
+
+    // Swipe left / right on preview
+    let startX = 0;
+
+    previewBox.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX;
+    });
+
+    previewBox.addEventListener('touchend', e => {
+      const deltaX = e.changedTouches[0].clientX - startX;
+      if (Math.abs(deltaX) < 40) return; // threshold
+
+      if (deltaX < 0) {
+        if (!switchTo(currentIndex + 1)) previewBox.classList.add('bounce-left');
+      } else {
+        if (!switchTo(currentIndex - 1)) previewBox.classList.add('bounce-right');
+      }
+
+      previewBox.addEventListener('animationend', () => {
+        previewBox.classList.remove('bounce-left', 'bounce-right');
+      }, { once: true });
+    });
+
+    downloadBtn.addEventListener('click', () => {
+      const link = document.createElement('a');
+      link.href = previews[currentIndex].src;
+      link.download = previews[currentIndex].src.split('/').pop();
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+  </script>
+</body>
+</html>
