@@ -1,27 +1,18 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5REF66Z9B1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-5REF66Z9B1');
-</script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mã đáo thành công Viettel Money</title>
-
-  <!-- Google Analytics 4 (placeholder) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5REF66Z9B1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
+
+    gtag('config', 'G-5REF66Z9B1');
   </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mã đáo thành công Viettel Money</title>
 
   <style>
     :root {
@@ -213,10 +204,24 @@
       }, { once: true });
     });
 
+    // --- PHẦN TRACKING ĐƯỢC THÊM VÀO ---
     downloadBtn.addEventListener('click', () => {
+      // 1. Lấy tên file ảnh hiện tại
+      const currentImageSrc = previews[currentIndex].src;
+      const fileName = currentImageSrc.split('/').pop();
+
+      // 2. Gửi sự kiện về Google Analytics
+      if (typeof gtag === 'function') {
+        gtag('event', 'download_wallpaper', {
+          'file_name': fileName,
+          'wallpaper_index': currentIndex + 1
+        });
+      }
+
+      // 3. Thực hiện tải xuống như bình thường
       const link = document.createElement('a');
-      link.href = previews[currentIndex].src;
-      link.download = previews[currentIndex].src.split('/').pop();
+      link.href = currentImageSrc;
+      link.download = fileName;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
